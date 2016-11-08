@@ -103,8 +103,6 @@ public class ComposableListExercisesTest {
         System.out.println("----------- testExercise12 ----------------");
         ComposableList<JSON> e = ComposableListExercises.exercise12();
         ComposableList<JSON> s = ComposableListSolutions.exercise12();
-        System.out.println("e: " + e);
-        System.out.println("s: " + s);
         assertMatch(e, s);
 
         //   {"id": 675465,"title": "Fracture","boxart":"http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
@@ -151,6 +149,8 @@ public class ComposableListExercisesTest {
         System.out.println("----------- testExercise17 ----------------");
         ComposableList<String> e = ComposableListExercises.exercise17();
         ComposableList<String> s = ComposableListSolutions.exercise17();
+        System.out.println("e: " + e);
+        System.out.println("s: " + s);
         assertMatch(e, s);
     }
 
