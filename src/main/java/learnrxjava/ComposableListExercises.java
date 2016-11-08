@@ -460,12 +460,6 @@ public class ComposableListExercises<T> extends ArrayList<T> implements Composab
         //   {"id": 675465,"title": "Fracture","boxart":"http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
         // };
 
-//        ComposableList<ComposableList<JSON>> jsonListList = movieLists.concatMap(
-//                movieList -> movieList.videos.map(
-//                    video -> (
-//                            video.boxarts.filter(boxart -> boxart.width == 150 && boxart.height == 200)
-//                                         .map(boxart -> json("id", video.id, "title", video.title, "boxart", boxart.url)))));
-//         return jsonListList.concatMap(json -> json);
         return movieLists.concatMap(
                 movieList -> movieList.videos.concatMap(
                     video -> video.boxarts
@@ -477,7 +471,6 @@ public class ComposableListExercises<T> extends ArrayList<T> implements Composab
                         )
                 )
         );
-//        throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     /*
@@ -513,11 +506,12 @@ public class ComposableListExercises<T> extends ArrayList<T> implements Composab
                     // ****** INSERT CODE HERE ********
                     // Assign the largestBoxart to the current boxart, and assign the maxSize to the currentSize.
                     // ****** INSERT CODE HERE ********
+                    largestBoxart = boxart;
+                    maxSize = currentSize;
                 }
             }
 
-        // return largestBoxart;
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return largestBoxart;
     }
     /*
     Exercise 14: Implement reduce()
@@ -547,6 +541,7 @@ public class ComposableListExercises<T> extends ArrayList<T> implements Composab
             // ************ INSERT CODE HERE **************
             //  if the list is empty, return this
             // ********************************************
+            return this;
         } else {
             accumulatedValue = this.get(0);
 
@@ -558,14 +553,12 @@ public class ComposableListExercises<T> extends ArrayList<T> implements Composab
                 // Set accumulatedValue to the result of passing accumulatedValue and the list value at the 
                 // counter index to the combiner function.
                 // ****** INSERT CODE HERE ********
-
+                accumulatedValue = combiner.apply(accumulatedValue, this.get(counter));
                 counter++;
             }
 
-            //return ComposableListExercises.of(accumulatedValue);
+            return ComposableListExercises.of(accumulatedValue);
         }
-
-        throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     /*
