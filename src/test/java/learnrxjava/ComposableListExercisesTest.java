@@ -173,8 +173,6 @@ public class ComposableListExercisesTest {
         System.out.println("----------- testExercise20 ----------------");
         ComposableList<JSON> e = ComposableListExercises.exercise20();
         ComposableList<JSON> s = ComposableListSolutions.exercise20();
-        System.out.println("e: " + e);
-        System.out.println("s: " + s);
         assertMatch(e, s);
     }
 

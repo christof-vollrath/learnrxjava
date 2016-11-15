@@ -897,8 +897,7 @@ public class ComposableListExercises<T> extends ArrayList<T> implements Composab
         );
 
         //... finish this expression
-        // return ComposableListExercises.zip( 
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return ComposableListExercises.zip(videos, bookmarks, (v, b) -> json("videoId", v.id, "bookmarkId", b.id));
     }
 
     /*
@@ -992,7 +991,20 @@ public class ComposableListExercises<T> extends ArrayList<T> implements Composab
             });
         */
 
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return movieLists.concatMap(
+                movieList -> movieList.videos.concatMap(
+                        video -> {
+                            ComposableList<InterestingMoment> moments = video.interestingMoments
+                                    .filter(m -> m.type.equals("Middle"));
+                            return zip(
+                                video.boxarts
+                                .reduce((b1, b2) -> (b1.width * b1.height < b2.width * b2.height) ? b1 : b2),
+                                moments,
+                              (boxArt, moment) -> json("id", video.id, "title", video.title, "time", moment.time, "url", boxArt.url)
+                            );
+                        }
+                )
+        );
     }
 
 
