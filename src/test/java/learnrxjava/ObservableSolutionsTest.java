@@ -43,6 +43,7 @@ public class ObservableSolutionsTest {
         ts.awaitTerminalEvent();
         ts.assertNoErrors();
         assertEquals(1, ts.getOnNextEvents().size());
+        System.out.println(ts.getOnNextEvents().get(0));
         assertTrue(ts.getOnNextEvents().get(0).startsWith("Hello "));
     }
 
